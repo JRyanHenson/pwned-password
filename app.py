@@ -27,7 +27,7 @@ def check_password():
         return render_template("index.html", error="Please enter a password.")
 
     # Hash the password with SHA-1, split into prefix + suffix
-    sha1 = hashlib.sha1(password.encode("utf-8")).hexdigest().upper()
+    sha1 = hashlib.sha1(password.encode("utf-8"), usedforsecurity=False).hexdigest().upper()
     prefix = sha1[:5]
     suffix = sha1[5:]
 
