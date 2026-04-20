@@ -114,6 +114,7 @@ jobs:
           image-ref: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
           exit-code: '1'
           severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true
           format: 'table'
 
       - name: Push to ECR

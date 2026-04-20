@@ -10,6 +10,10 @@ RUN pip install --no-cache-dir --user -r requirements.txt
 # ── Stage 2: Runner ───────────────────────────────────────────
 FROM python:3.12-slim AS runner
 
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN useradd --system --uid 1001 --no-create-home appuser
 
 WORKDIR /app
