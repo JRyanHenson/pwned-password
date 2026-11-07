@@ -1,5 +1,5 @@
 # ── Stage 1: Builder ──────────────────────────────────────────
-FROM python:3.13-slim AS builder
+FROM python:3.13-slim@sha256:09a17cad02668ae61ece136b4fd36ac3849e14f670ebedb637ea3e15580525bc AS builder
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --user -r requirements.txt
 
 # ── Stage 2: Runner ───────────────────────────────────────────
-FROM python:3.13-slim AS runner
+FROM python:3.13-slim@sha256:09a17cad02668ae61ece136b4fd36ac3849e14f670ebedb637ea3e15580525bc AS runner
 
 RUN apt-get update \
     && apt-get upgrade -y \
