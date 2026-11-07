@@ -14,6 +14,10 @@ RUN apt-get update \
     && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/*
 
+# Runtime doesn't need pip; removing it also removes its vendored
+# copies of urllib3/msgpack/setuptools that Trivy flags.
+RUN pip uninstall -y pip
+
 RUN useradd --system --uid 1001 --no-create-home appuser
 
 WORKDIR /app
